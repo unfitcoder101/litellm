@@ -3685,7 +3685,8 @@ class Router:
                     parent_otel_span=parent_otel_span,
                 )
                 response = await litellm.acompletion(**compacted_input)
-
+                print(f"TRACE-ACOMPLETION model={model_name} response_type={type(response)} response={response!r}")
+                
                 ## CHECK CONTENT FILTER ERROR ##
                 if isinstance(response, ModelResponse):
                     _should_raise = self._should_raise_content_policy_error(
